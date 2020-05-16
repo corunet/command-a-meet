@@ -4,11 +4,14 @@
   "description": "Slash command /meet",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Corunet",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "googleapis": "^50.0.0"
+  },
   "devDependencies": {
     "eslint": "^7.0.0",
     "eslint-config-prettier": "^6.11.0",
