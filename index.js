@@ -25,7 +25,10 @@ app.get("/", async (req, res) => {
 app.post("/meet", async (req, res) => {
 	try {
 		const { hangoutLink } = await createEvent(gCalendar, CALENDAR_ID)
-		res.send(`Join the meeting at ${hangoutLink}`)
+		res.json({
+			text: `Join the meeting at ${hangoutLink}`,
+			response_type: "in_channel"
+		})
 	} catch (e) {
 		console.error(JSON.stringify(e))
 		res.sendStatus(503)
