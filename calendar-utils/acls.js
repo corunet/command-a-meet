@@ -1,6 +1,6 @@
-exports.addACL = function (calendar, user) {
-	return calendar.acl.insert({
-		calendarId: CALENDAR_ID,
+exports.addACL = function (gCalendar, calendarId, user) {
+	return gCalendar.acl.insert({
+		calendarId,
 		resource: {
 			role: "reader",
 			scope: {
