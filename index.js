@@ -4,6 +4,7 @@ const fs = require("fs")
 const express = require("express")
 const { createEvent } = require("./calendar-utils/calendar")
 const app = express()
+app.use(express.static("public"))
 
 const PORT = 3000
 const CALENDAR_ID = "bm28kde2rsnt1va19tp08adjh0@group.calendar.google.com"
