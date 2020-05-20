@@ -9,4 +9,4 @@ autodeploy:
  script:
   - docker run -d -p 3030:3000 -w="/home/node/app" -v ./:/home/node/app --name mattermost-meet-deploy node:latest npm install && npm start
  rules:
-  - if: '$CI_COMMIT_BRANCH == "release"'
+  - if: '$CI_COMMIT_BRANCH == "ci"'
