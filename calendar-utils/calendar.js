@@ -2,7 +2,7 @@ const TIMEZONE = "Europe/Madrid"
 
 function getEventISODates() {
 	const start = new Date()
-	const end = new Date()
+	const end = new Date(start)
 	end.setMinutes(end.getMinutes() + 30)
 	return {
 		startDateTime: start.toISOString(),
