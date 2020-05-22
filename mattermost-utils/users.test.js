@@ -3,6 +3,7 @@ const { getEmail } = require("./users")
 
 const testId = "test Id"
 const testEmail = "test Email"
+const testToken = "theWonderfulToken"
 jest.mock("node-fetch")
 
 test("get an user email", async () => {
@@ -11,7 +12,7 @@ test("get an user email", async () => {
 			json: () => Promise.resolve({ email: testEmail })
 		})
 	)
-	expect(await getEmail(testId)).toBe(testEmail)
+	expect(await getEmail(testId, testToken)).toBe(testEmail)
 	expect(fetch).toHaveBeenCalledWith(
 		expect.stringContaining(`/api/v4/users/${testId}`),
 		expect.objectContaining({
