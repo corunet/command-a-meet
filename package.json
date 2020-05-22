@@ -11,7 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "googleapis": "^50.0.0"
+    "googleapis": "^50.0.0",
+    "node-fetch": "^2.6.0"
   },
   "devDependencies": {
     "eslint": "^7.0.0",
