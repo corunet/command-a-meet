@@ -1,4 +1,4 @@
-const TIMEZONE = "Europe/Madrid"
+const calendarId = "primary"
 
 function getEventISODates() {
 	const start = new Date()
@@ -10,7 +10,7 @@ function getEventISODates() {
 	}
 }
 
-exports.createEvent = async function (gCalendar, calendarId) {
+exports.createEvent = async function (gCalendar, title = "A meeting") {
 	const { startDateTime, endDateTime } = getEventISODates()
 	const event = await gCalendar.events.insert({
 		calendarId,
@@ -18,7 +18,7 @@ exports.createEvent = async function (gCalendar, calendarId) {
 		resource: {
 			start: { dateTime: startDateTime },
 			end: { dateTime: endDateTime },
-			summary: `A test - ${startDateTime}`,
+			summary: title,
 			conferenceData: {
 				createRequest: {
 					requestId: startDateTime,

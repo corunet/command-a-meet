@@ -28,7 +28,9 @@ app.post("/meet", async (req, res) => {
 			version: "v3",
 			auth
 		})
-		const { hangoutLink } = await createEvent(gCalendar, "primary")
+
+		const title = "An event" //TO-DO: get from request
+		const { hangoutLink } = await createEvent(gCalendar, event)
 		res.json({
 			text: `Join the meeting at ${hangoutLink}`,
 			response_type: "in_channel"
