@@ -4,7 +4,7 @@ const { getEmail } = require("./users")
 const testId = "test Id"
 const testEmail = "test Email"
 const testToken = "theWonderfulToken"
-const testAPI_url = "http://example.com/api/users"
+const testAPI_url = "http://example.com/api"
 jest.mock("node-fetch")
 
 test("get an user email", async () => {
@@ -21,7 +21,7 @@ test("get an user email", async () => {
 
 	expect(response).toBe(testEmail)
 	expect(fetch).toHaveBeenCalledWith(
-		`${testAPI_url}/${testId}`,
+		`${testAPI_url}/users/${testId}`,
 		expect.objectContaining({
 			headers: expect.objectContaining({
 				Authorization: expect.stringMatching(/^Bearer \w+$/)
