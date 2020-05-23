@@ -6,9 +6,7 @@ const { createEvent } = require("./calendar-utils/calendar")
 const { getEmail } = require("./mattermost-utils/users")
 const app = express()
 app.use(express.static("public"))
-app.use(express.urlencoded())
-
-const PORT = 3000
+app.use(express.urlencoded({ extended: false }))
 
 const configPath = path.join(__dirname, "config.json")
 const config = JSON.parse(fs.readFileSync(configPath))
@@ -18,7 +16,11 @@ app.get("/", async (req, res) => {
 })
 app.post("/meet", async (req, res) => {
 	try {
-		const email = await getEmail(req.body.user_id, config.mattermost.token)
+		const email = await getEmail({
+			id: req.body.user_id,
+			token: config.mattermost.token,
+			API_url: config.mattermost.api
+		})
 		const { credentials } = config.google
 		const auth = new google.auth.JWT(
 			credentials.client_email,
@@ -27,7 +29,7 @@ app.post("/meet", async (req, res) => {
 			["https://www.googleapis.com/auth/calendar"],
 			email
 		)
-		const gCalendar = google.calendar({
+		const gCalendar = await google.calendar({
 			version: "v3",
 			auth
 		})
@@ -44,4 +46,4 @@ app.post("/meet", async (req, res) => {
 	}
 })
 
-app.listen(PORT, () => console.log(`Listening at :${PORT}`))
+exports.app = app
