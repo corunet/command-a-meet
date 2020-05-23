@@ -16,8 +16,12 @@ app.get("/", async (req, res) => {
 })
 app.post("/meet", async (req, res) => {
 	try {
+		const { user_id, channel_name, text: title } = req.body
+
+		const eventTitle = title || `${channel_name} (Mattermost)`
+
 		const email = await getEmail({
-			id: req.body.user_id,
+			id: user_id,
 			token: config.mattermost.token,
 			API_url: config.mattermost.api
 		})
@@ -34,10 +38,10 @@ app.post("/meet", async (req, res) => {
 			auth
 		})
 
-		const title = "An event" //TO-DO: get from request
-		const { hangoutLink } = await createEvent(gCalendar, title)
+		const { hangoutLink } = await createEvent(gCalendar, eventTitle)
+		const responseText = title || `Join the meeting`
 		res.json({
-			text: `Join the meeting at ${hangoutLink}`,
+			text: `${responseText} at ${hangoutLink}`,
 			response_type: "in_channel"
 		})
 	} catch (e) {
