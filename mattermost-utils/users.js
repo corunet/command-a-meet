@@ -1,7 +1,6 @@
 const fetch = require("node-fetch")
-const API_url = "https://mattermost.local/api/v4/users"
 
-exports.getEmail = async function (id, token) {
+exports.getEmail = async function ({ id, token, API_url }) {
 	const userResponse = await fetch(`${API_url}/${id}`, {
 		headers: {
 			Authorization: `Bearer ${token}`

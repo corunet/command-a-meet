@@ -6,9 +6,7 @@ const { createEvent } = require("./calendar-utils/calendar")
 const { getEmail } = require("./mattermost-utils/users")
 const app = express()
 app.use(express.static("public"))
-app.use(express.urlencoded())
-
-const PORT = 3000
+app.use(express.urlencoded({ extended: false }))
 
 const configPath = path.join(__dirname, "config.json")
 const config = JSON.parse(fs.readFileSync(configPath))
@@ -18,7 +16,15 @@ app.get("/", async (req, res) => {
 })
 app.post("/meet", async (req, res) => {
 	try {
-		const email = await getEmail(req.body.user_id, config.mattermost.token)
+		const { user_id, channel_name, text: title } = req.body
+
+		const eventTitle = title || `${channel_name} (Mattermost)`
+
+		const email = await getEmail({
+			id: user_id,
+			token: config.mattermost.token,
+			API_url: config.mattermost.api
+		})
 		const { credentials } = config.google
 		const auth = new google.auth.JWT(
 			credentials.client_email,
@@ -27,15 +33,15 @@ app.post("/meet", async (req, res) => {
 			["https://www.googleapis.com/auth/calendar"],
 			email
 		)
-		const gCalendar = google.calendar({
+		const gCalendar = await google.calendar({
 			version: "v3",
 			auth
 		})
 
-		const title = "An event" //TO-DO: get from request
-		const { hangoutLink } = await createEvent(gCalendar, title)
+		const { hangoutLink } = await createEvent(gCalendar, eventTitle)
+		const responseText = title || `Join the meeting`
 		res.json({
-			text: `Join the meeting at ${hangoutLink}`,
+			text: `${responseText} at ${hangoutLink}`,
 			response_type: "in_channel"
 		})
 	} catch (e) {
@@ -44,4 +50,4 @@ app.post("/meet", async (req, res) => {
 	}
 })
 
-app.listen(PORT, () => console.log(`Listening at :${PORT}`))
+exports.app = app
