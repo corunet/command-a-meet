@@ -1,7 +1,10 @@
 {
 	"mattermost": {
-		"api": "https://mattermost.local/api/v4",
-		"token": ""
+		"api": {
+			"url": "https://mattermost.local/api/v4",
+			"token": ""
+		},
+		"slash_command_token": ""
 	},
 	"google": {
 		"credentials": {

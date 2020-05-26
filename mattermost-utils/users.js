@@ -1,6 +1,6 @@
 const fetch = require("node-fetch")
 
-exports.getEmail = async function ({ id, token, API_url }) {
+exports.getEmail = async function ({ id, token, API_url }) {
 	const userResponse = await fetch(`${API_url}/users/${id}`, {
 		headers: {
 			Authorization: `Bearer ${token}`
