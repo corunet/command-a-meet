@@ -6,7 +6,7 @@ autodeploy:
   before_script:
     - docker stop mattermost-meet-deploy || true &&  docker rm mattermost-meet-deploy || true
   script:
-    - "echo $CONFIG_FILE > config.json"
+    - "echo $CONFIG_CREDENTIALS_FILE > config.json"
     - docker create -p 3001:3000 -w="/home/node/app" --name mattermost-meet-deploy node:latest npm run deploy
     - docker cp . mattermost-meet-deploy:/home/node/app
     - docker start mattermost-meet-deploy
