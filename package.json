@@ -6,7 +6,7 @@
 	"scripts": {
 		"start": "node server.js",
 		"test": "jest",
-		"deploy": "npm install && npm start"
+		"deploy": "npm install && npm start "
 	},
 	"author": "Corunet",
 	"license": "ISC",
