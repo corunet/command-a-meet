@@ -12,4 +12,4 @@ autodeploy:
     - docker start mattermost-meet-deploy
     - echo " " > config.json
   rules:
-    - if: '$CI_COMMIT_BRANCH == "gitlab_ci"'
+    - if: '$CI_COMMIT_BRANCH == "master"'
