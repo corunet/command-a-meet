@@ -4,17 +4,21 @@ const fs = require("fs")
 const express = require("express")
 const { createEvent } = require("./calendar-utils/calendar")
 const { getEmail } = require("./mattermost-utils/users")
+const config = require("./config.json")
+
 const app = express()
 app.use(express.static("public"))
 app.use(express.urlencoded({ extended: false }))
-
-const configPath = path.join(__dirname, "config.json")
-const config = JSON.parse(fs.readFileSync(configPath))
 
 app.get("/", async (req, res) => {
 	res.send("Mattermost - Google Meet integration")
 })
 app.post("/meet", async (req, res) => {
+	if (req.body.token !== config.mattermost.slash_command_token) {
+		console.warn("A valid token is required")
+		res.sendStatus(403)
+		return
+	}
 	try {
 		const { user_id, channel_name, text: title } = req.body
 
@@ -22,8 +26,8 @@ app.post("/meet", async (req, res) => {
 
 		const email = await getEmail({
 			id: user_id,
-			token: config.mattermost.token,
-			API_url: config.mattermost.api
+			token: config.mattermost.api.token,
+			API_url: config.mattermost.api.url
 		})
 		const { credentials } = config.google
 		const auth = new google.auth.JWT(
