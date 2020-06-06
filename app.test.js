@@ -2,10 +2,10 @@ const request = require("supertest")
 const { app } = require("./app")
 
 // Mocks
-const { getEmail } = require("./mattermost-utils/users")
-jest.mock("./mattermost-utils/users")
-const { createEvent } = require("./calendar-utils/calendar")
-jest.mock("./calendar-utils/calendar")
+const { getEmail } = require("./mattermost/users")
+jest.mock("./mattermost/users")
+const { createEvent } = require("./calendar/calendar")
+jest.mock("./calendar/calendar")
 const { google } = require("googleapis")
 jest.mock("googleapis")
 jest.mock("./config.json", () => ({
