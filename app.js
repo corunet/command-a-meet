@@ -1,6 +1,4 @@
 const { google } = require("googleapis")
-const path = require("path")
-const fs = require("fs")
 const express = require("express")
 const { createEvent } = require("./calendar/calendar")
 const { getEmail } = require("./mattermost/users")
@@ -43,7 +41,7 @@ app.post("/meet", async (req, res) => {
 		})
 
 		const { hangoutLink } = await createEvent(gCalendar, eventTitle)
-		const responseText = title || `Join the meeting`
+		const responseText = title || "Join the meeting"
 		res.json({
 			text: `${responseText} at ${hangoutLink}`,
 			response_type: "in_channel"
