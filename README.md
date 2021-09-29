@@ -71,11 +71,10 @@ Now you can write `/meet tabs VS spaces` in any Mattermost channel and a public 
 _Command a meet_ will create a 30' event on your main calendar, called "tabs VS spaces", with a Google Meet conference. Then it will publish a message in your channel with the Google Meet link.
 
 ## License
-The project is available as open source under the terms of the [Apache 2 License](LICENSE).
+The project is available as open source under the terms of the [MPL 2.0](LICENSE).
 
 
 
-Google Meet™ is a trademark of Google LLC.
+Google Meet™ & Google Suite™ are trademarks of Google LLC.
 
 Mattermost™ is a trademark of Mattermost, inc.
-

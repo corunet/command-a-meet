@@ -10,7 +10,7 @@
     "deploy": "npm install && npm run lint && npm test && npm start"
   },
   "author": "Corunet",
-  "license": "Apache",
+  "license": "MPL 2.0",
   "dependencies": {
     "express": "^4.17.1",
     "googleapis": "^50.0.0",
