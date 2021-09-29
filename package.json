@@ -1,7 +1,7 @@
 {
   "name": "command-a-meet",
-  "version": "0.2.0",
   "description": "Launches a meet with Google Meet with a slash command",
+  "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
