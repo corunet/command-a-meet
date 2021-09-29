@@ -1,11 +1,11 @@
-# Mattermost + Google Meet integration
+# Command a Meet
 
 ## About
-Arrange a video meeting from Mattermost just like `/meet (meeting subject)`. It's a fast & easy way to turn a written discussion into a video talk.
+Arrange a video meeting with Google Meet™ from Mattermost™ just like `/meet (meeting subject)`. It's a fast & easy way to turn a written discussion into a video talk.
 
 ### How
 
-A mattermost user can command `/meet` in a channel. This makes a POST request to the Mattermost - Meet integration server (this code), that checks de user email, requests a Google Suite event (with a Meet conference) on the users' main calendar, and publishes a Meet link in the same Mattermost channel.
+A mattermost user can command `/meet` in a channel. This makes a POST request to the Mattermost - Google Meet integration server (this code), that checks de user email, requests a Google Suite event (with a Meet conference) on the users' main calendar, and publishes a Meet link in the same Mattermost channel.
 
 
 ## Table of Contents
@@ -47,16 +47,16 @@ and set the other options as you feel like.
 #### Bot
 
 [Create a bot](https://docs.mattermost.com/developer/bot-accounts.html#bot-account-creation) to make requests to the Mattermost API.
-You will need the token to configure mattermost-meet.
+You will need the token to configure your _Command a meet_ server.
 
-### Configure mattermost-meet
+### Configure _Command a meet_
 
 Edit the `config.json` file:
 * `google.credentials`: the JSON obtained by creating a private key from the Google service account.
 * `mattermost`
   * `api`
     * `url`: Your mattermost API url, usually `https://<yourMattermostHost>/api/v4`
-    * `token`: You bot private token.
+    * `token`: Your bot private token.
   * `slash_command_token`: A token created by Mattermost when you add a slash command. Only requests with this token are accepted.
 
 
@@ -68,7 +68,14 @@ This command makes some checks, installs dependencies and runs the server.
 ## Using the integration
 Now you can write `/meet tabs VS spaces` in any Mattermost channel and a public message will link to a Meet.
 
-mattermost-meet will create a 30' event on your main calendar, called "tabs VS spaces", with a Meet conference. Then it will publish a message in your channel with the Meet link.
+_Command a meet_ will create a 30' event on your main calendar, called "tabs VS spaces", with a Google Meet conference. Then it will publish a message in your channel with the Google Meet link.
 
 ## License
 The project is available as open source under the terms of the [Apache 2 License](LICENSE).
+
+
+
+Google Meet™ is a trademark of Google LLC.
+
+Mattermost™ is a trademark of Mattermost, inc.
+

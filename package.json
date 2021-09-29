@@ -1,7 +1,7 @@
 {
-  "name": "mattermost-meet",
+  "name": "command-a-meet",
   "version": "0.2.0",
-  "description": "Slash command /meet",
+  "description": "Launches a meet with Google Meet with a slash command",
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
@@ -10,7 +10,7 @@
     "deploy": "npm install && npm run lint && npm test && npm start"
   },
   "author": "Corunet",
-  "license": "ISC",
+  "license": "Apache",
   "dependencies": {
     "express": "^4.17.1",
     "googleapis": "^50.0.0",
