@@ -7,7 +7,7 @@
     "start": "node server.js",
     "test": "jest",
     "lint": "eslint --ignore-path .gitignore .",
-    "deploy": "npm install && npm run lint && npm test && npm start"
+    "deploy": "npm install && npm start"
   },
   "author": "Corunet",
   "license": "MPL 2.0",
